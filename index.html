@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Dependency management in Magento with Composer</title>
+
+		<meta name="description" content="Dependency management in Magento with Composer">
+		<meta name="author" content="Manuele Menozzi">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/night.css" id="theme">
+		<link rel="stylesheet" href="css/theme/custom.css">
+		<link rel="stylesheet" href="css/fullscreen-img.css">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+		<script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal theme-font-league">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+				<section>
+					<h1>Dependency management in Magento with Composer</h1>
+                    <br /><br /><br />
+                    <img src="img/avatar.jpeg" alt="Gravatar" style="float:left; margin-right: 15px; margin-top: 0;"/>
+                    <p style="overflow: hidden; text-align: left;">
+                        <small>
+                            <strong>Manuele Menozzi</strong><br />
+							<br />
+                            Senior PHP Developer @ <a href="http://www.webgriffe.com/">Webgriffe®</a><br />
+							Zend Certified PHP Engineer<br />
+                            Proud <a href="http://www.grusp.it/">GrUSP</a> & <a href="http://more.grusp.org">PUG MoRe</a> member<br />
+                            <br />
+                            Email: <a href="mailto:mmenozzi@webgriffe.com">mmenozzi@webgriffe.com</a> / Twitter: <a href="https://twitter.com/mmenozzi">@mmenozzi</a><br />
+                        </small>
+                    </p>
+				</section>
+
+				<section>
+					<h2>Agenda</h2>
+					<ul>
+						<li>What Composer is</li>
+						<li>What Composer does and how</li>
+						<li>Benefits</li>
+						<li>Composer &amp; Magento</li>
+						<li>Magento Composer Installer</li>
+						<li>Magento PSR0 (and Composer) Autoloader</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>What Composer is</h2>
+					<br/>
+					<img src="img/logo-composer-transparent.png" alt="Composer Logo" />
+					<p class="blockquote">
+						Composer is a tool for <span class="orange">dependency
+						management</span> in PHP. It allows you to declare the
+						dependent libraries your project needs and it will
+						install them in your project for you.
+					</p>
+
+					<aside class="notes">
+						Composer è un tool open source, sviluppato in php, per
+						la gestione delle dipendenze in progetti php. Le sue
+						potenzialità lo hanno fatto diventare rapidamente lo
+						standard de facto in questo ambito. Si pensi
+						semplicemente al fatto che alcune librerie storiche,
+						come phpunit, stanno abbandonando pear per passare a
+						composer come sistema di distribuzione. Considerando che
+						pear è stato per tanti anni il sistema ufficiale in php
+						per distribuire librerie si capisce quanto questo
+						strumento sia rivoluzionario.
+					</aside>
+				</section>
+
+				<section>
+					<h2>Any <span class="orange">Q</span>uestion?</h2>
+					<hr/>
+					<br/><br/>
+					<h3>Webgriffe</h3>
+					<p>
+						Tailored Digital Works
+						<br />
+						<a href="http://www.webgriffe.com/">webgriffe.com</a>
+						|
+						<a href="https://twitter.com/webgriffe">@webgriffe</a>
+					</p>
+					<ul>
+						<li><span class="orange">5+</span> Years of Experience with Magento</li>
+						<li><span class="orange">5</span> Certified Developers (Zend &amp; Magento)</li>
+						<li><span class="orange">350+</span> Customers</li>
+						<li><span class="orange">20+</span> Magento Extensions</li>
+						<li><span class="orange">450+</span> Extensions Sold</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Thank you!</h2>
+				</section>
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: 'fade', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'lib/js/fullscreen-img.js' },
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
+
+<!--
+
+Composer permette di definire in un file json (composer.json) l'elenco dei pacchetti da cui il nostro progetto dipende; per ogni pacchetto può inoltre essere specificato un vincolo di versione. Lanciando poi un singolo comando, Composer utilizza questi metadati per scaricare ed installare per noi queste dipendenze all'interno del nostro progetto. L'aspetto interessante è proprio in queste ultime parole "nel nostro progetto", infatti su un secondo progetto avremo un altro Composer.json con diverse dipendenze che saranno utilizzate per quel progetto.
+
+Altra cosa importante da tenere presente è che Composer, ci permette di installare non solo librerie pubbliche ma anche dipendenze non accessibili a tutti che si trovano ad esempio su repository privati.
+
+Come funziona
+Quando lanciamo l'installazione delle dipendenze, Composer scansiona il repository packagist.org (più eventuali repository aggiuntivi definiti nell'apposita sezione del Composer.json) e indicizza i pacchetti disponibili, le loro versioni e le loro dipendenze. Dopodiché risolve l'albero delle dipendenze in maniera automatica definendo così un elenco di pacchetti da installare ognuno ad una specifica versione. Questo elenco viene "lockato" nel file composer.lock per fare in modo che in futuro, per quel progetto, vengano sempre installate  quelle dipendenze a quelle esatte versioni. I pacchetti vengono poi scaricati utilizzando le informazioni definite nel composer.json di ogni pacchetto e i relativi file vengono salvati nella cartella "vendor". Vengono eseguiti eventuali customInfine genera per noi, in automatico, un unico autoloader che, se utilizzato, ci fa l'autoload di tutte le classi presenti nei pacchetti appena scaricati. Tutto questo in poche decine di secondi!
+
+I vantaggi
+I vantaggi di un tool di questo tipo sono molteplici:
+Risparmio di tempo: innanzi tutto se dovessimo fare il lavoro appena descritto manualmente tutte le volte che ne abbiamo bisogno capiamo bene che il tempo che impiegheremmo sarebbe molto di più
+Ri-usabilità del codice: se nel nostro progetto ci serve un sistema di logging affidabile è inutile che ci scriviamo da zero l’ennesimo motore di logging! Ce ne sono già diversi e fatti molto bene quindi usiamoli. Con Composer è molto facile perché basta scegliere la libreria di logging che vogliamo utilizzare e aggiungerla alle dipendenze del nostro progetto.
+Condivisione del codice: se invece, per un particolare progetto, scrivessimo una libreria particolarmente utile e ri-usabile, tramite Composer possiamo facilmente fare in modo che altri la utilizzino. Chissà magari poi la community ce la può pure migliorare.
+Aggiornamenti facili: se una delle librerie da cui il nostro progetto dipende ha rilasciato una nuova versione che ci farebbe dannatamente comodo possiamo con un singolo comando (composer update) aggiornare la libreria anche nel nostro progetto.
+-->

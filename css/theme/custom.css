@@ -1,0 +1,37 @@
+html body {
+    background:url("../../img/nuovobg.jpg");
+    background-position:center;
+	background-size: 100%;
+}
+
+.reveal h1 {
+
+}
+
+.orange {
+    color: #FF9900;
+}
+
+.reveal section img {
+    border:0 none;
+    background: transparent;
+    box-shadow:none;
+}
+
+.reveal a:not(.image),
+.reveal a {
+    color: #7cc1ff;
+}
+
+.reveal pre {    
+    background: transparent;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+}
+.reveal pre code {
+    background: transparent;
+    -webkit-box-shadow: none !important;
+	-moz-box-shadow: none !important;
+	box-shadow: none !important;
+}
