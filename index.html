@@ -86,18 +86,123 @@
 					</p>
 
 					<aside class="notes">
-						Composer è un tool open source, sviluppato in php, per
-						la gestione delle dipendenze in progetti php. Le sue
-						potenzialità lo hanno fatto diventare rapidamente lo
-						standard de facto in questo ambito. Si pensi
-						semplicemente al fatto che alcune librerie storiche,
-						come phpunit, stanno abbandonando pear per passare a
-						composer come sistema di distribuzione. Considerando che
-						pear è stato per tanti anni il sistema ufficiale in php
-						per distribuire librerie si capisce quanto questo
-						strumento sia rivoluzionario.
+                        Composer è un tool open source, sviluppato in php, per la gestione delle dipendenze in progetti
+                        php. Le sue potenzialità lo hanno fatto diventare rapidamente lo standard de facto in questo
+                        ambito. Si pensi semplicemente al fatto che alcune librerie storiche, come phpunit, stanno
+                        abbandonando pear per passare a composer come sistema di distribuzione. Considerando che pear è
+                        stato per tanti anni il sistema ufficiale in php per distribuire librerie si capisce quanto
+                        questo strumento sia rivoluzionario.
 					</aside>
 				</section>
+
+                <section>
+                    <h2>What Composer does&hellip;</h2>
+                    <br/>
+                    <p>
+                        <span class="courier">
+                            /composer.json
+                        </span>
+                    </p>
+                    <pre><code data-trim>
+{
+    "require": {
+        "php": ">=5.3.0",
+        "psr/log": "~1.0",
+        "acme/foo": "@dev",
+        "monolog/monolog": "dev-master#2eb0c0978d290a1c45346a1955188929cb4e5db7",
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~3.7.0",
+        "graylog2/gelf-php": "~1.0",
+        "doctrine/couchdb": "~1.0@dev",
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:AcmeCompany/FooLibrary.git"
+        },
+    ]
+}
+                    </code></pre>
+
+                    <br/>
+                    <p class="fragment">
+                        <span class="courier">
+                            $ composer install
+                        </span>
+                    </p>
+                    <aside class="notes">
+                        Composer permette di definire in un file json (composer.json) l'elenco dei pacchetti da cui il
+                        nostro progetto dipende; per ogni pacchetto può essere specificato un vincolo di
+                        versione o di stabilità. Lanciando poi un singolo comando, Composer utilizza questi metadati per scaricare ed
+                        installare per noi queste dipendenze all'interno del nostro progetto. L'aspetto interessante è
+                        proprio in queste ultime parole "nel nostro progetto", infatti su un secondo progetto avremo un
+                        altro Composer.json con diverse dipendenze che saranno utilizzate per quel progetto.
+                        Altra cosa importante da tenere presente è che Composer, ci permette di installare non solo
+                        librerie pubbliche ma anche dipendenze non open-source che si trovano ad esempio su repository
+                        privati.
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>&hellip; and how</h2>
+                    <br/><br/>
+                    <ol>
+                        <li class="fragment">Available <span class="orange">packages indexing</span></li>
+                        <li class="fragment"><span class="orange">Dependency tree and packages list</span> calculation</li>
+                        <li class="fragment">Packages list <span class="orange">locking</span> (<span class="courier">composer.lock</span> file)</li>
+                        <li class="fragment">Packages <span class="orange">download</span> (in <span class="courier">vendor</span> folder)</li>
+                        <li class="fragment">Custom <span class="orange">installers</span></li>
+                        <li class="fragment"><span class="orange">Autoload</span> dump</li>
+                    </ol>
+                    <aside class="notes">
+                        Quando lanciamo l'installazione delle dipendenze, Composer scansiona il repository packagist.org
+                        (più eventuali repository aggiuntivi definiti nell'apposita sezione del Composer.json) e
+                        indicizza i pacchetti disponibili, le loro versioni e le loro dipendenze. Dopodiché risolve
+                        l'albero delle dipendenze in maniera automatica definendo così un elenco di pacchetti da
+                        installare ognuno ad una specifica versione. Questo elenco viene "lockato" nel file
+                        composer.lock per fare in modo che in futuro, per quel progetto, vengano sempre installate
+                        quelle dipendenze a quelle esatte versioni. I pacchetti vengono poi scaricati utilizzando le
+                        i metadati definiti nei composer.json di ogni pacchetto e i relativi file vengono salvati
+                        in una cartella all'interno del nostro progetto (che solitamente si chiama "vendor"). Come
+                        penultimo passo, vengono eseguiti eventuali custom installers che permettono di eseguire
+                        operazioni custom di installazione. Vedremo tra poco che è proprio un particolare custom
+                        installer che ci consente di usare Composer su Magento. Infine, Composer, genera per noi, in
+                        automatico, un unico autoloader che, se utilizzato, ci fa l'autoload di tutte le classi presenti
+                        nei pacchetti appena scaricati. Tutto questo in poche decine di secondi!
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Benefits</h2>
+                    <br/><br/>
+                    <ul>
+                        <li class="fragment">Time save</li>
+                        <li class="fragment">Code reuse</li>
+                        <li class="fragment">Code sharing</li>
+                        <li class="fragment">Easy upgrades</li>
+                    </ul>
+
+                    <aside class="notes">
+                        I vantaggi di un tool di questo tipo sono molteplici:
+                        Risparmio di tempo: innanzi tutto se dovessimo fare il lavoro appena descritto manualmente tutte
+                        le volte che ne abbiamo bisogno capiamo bene che il tempo che impiegheremmo sarebbe molto più
+                        alto.
+                        <br/>
+                        Ri-usabilità del codice: se nel nostro progetto ci serve un sistema di logging affidabile è
+                        inutile che ci scriviamo da zero l’ennesimo motore di logging! Ce ne sono già diversi e fatti
+                        molto bene quindi usiamoli. Con Composer è molto facile perché basta scegliere la libreria di
+                        logging che vogliamo utilizzare e aggiungerla alle dipendenze del nostro progetto.
+                        <br/>
+                        Condivisione del codice: se invece, per un particolare progetto, scrivessimo una libreria
+                        particolarmente utile e ri-usabile, tramite Composer possiamo facilmente fare in modo che altri
+                        la utilizzino. Chissà magari poi la community ce la può pure migliorare.
+                        <br/>
+                        Aggiornamenti facili: se una delle librerie da cui il nostro progetto dipende ha rilasciato una
+                        nuova versione che ci farebbe dannatamente comodo possiamo con un singolo comando (composer
+                        update) aggiornare la libreria anche nel nostro progetto.
+                    </aside>
+                </section>
 
 				<section>
 					<h2>Any <span class="orange">Q</span>uestion?</h2>
@@ -162,20 +267,3 @@
 
 	</body>
 </html>
-
-<!--
-
-Composer permette di definire in un file json (composer.json) l'elenco dei pacchetti da cui il nostro progetto dipende; per ogni pacchetto può inoltre essere specificato un vincolo di versione. Lanciando poi un singolo comando, Composer utilizza questi metadati per scaricare ed installare per noi queste dipendenze all'interno del nostro progetto. L'aspetto interessante è proprio in queste ultime parole "nel nostro progetto", infatti su un secondo progetto avremo un altro Composer.json con diverse dipendenze che saranno utilizzate per quel progetto.
-
-Altra cosa importante da tenere presente è che Composer, ci permette di installare non solo librerie pubbliche ma anche dipendenze non accessibili a tutti che si trovano ad esempio su repository privati.
-
-Come funziona
-Quando lanciamo l'installazione delle dipendenze, Composer scansiona il repository packagist.org (più eventuali repository aggiuntivi definiti nell'apposita sezione del Composer.json) e indicizza i pacchetti disponibili, le loro versioni e le loro dipendenze. Dopodiché risolve l'albero delle dipendenze in maniera automatica definendo così un elenco di pacchetti da installare ognuno ad una specifica versione. Questo elenco viene "lockato" nel file composer.lock per fare in modo che in futuro, per quel progetto, vengano sempre installate  quelle dipendenze a quelle esatte versioni. I pacchetti vengono poi scaricati utilizzando le informazioni definite nel composer.json di ogni pacchetto e i relativi file vengono salvati nella cartella "vendor". Vengono eseguiti eventuali customInfine genera per noi, in automatico, un unico autoloader che, se utilizzato, ci fa l'autoload di tutte le classi presenti nei pacchetti appena scaricati. Tutto questo in poche decine di secondi!
-
-I vantaggi
-I vantaggi di un tool di questo tipo sono molteplici:
-Risparmio di tempo: innanzi tutto se dovessimo fare il lavoro appena descritto manualmente tutte le volte che ne abbiamo bisogno capiamo bene che il tempo che impiegheremmo sarebbe molto di più
-Ri-usabilità del codice: se nel nostro progetto ci serve un sistema di logging affidabile è inutile che ci scriviamo da zero l’ennesimo motore di logging! Ce ne sono già diversi e fatti molto bene quindi usiamoli. Con Composer è molto facile perché basta scegliere la libreria di logging che vogliamo utilizzare e aggiungerla alle dipendenze del nostro progetto.
-Condivisione del codice: se invece, per un particolare progetto, scrivessimo una libreria particolarmente utile e ri-usabile, tramite Composer possiamo facilmente fare in modo che altri la utilizzino. Chissà magari poi la community ce la può pure migliorare.
-Aggiornamenti facili: se una delle librerie da cui il nostro progetto dipende ha rilasciato una nuova versione che ci farebbe dannatamente comodo possiamo con un singolo comando (composer update) aggiornare la libreria anche nel nostro progetto.
--->

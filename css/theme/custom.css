@@ -23,15 +23,20 @@ html body {
     color: #7cc1ff;
 }
 
-.reveal pre {    
-    background: transparent;
+.reveal pre {
+    background: rgba(0, 0, 0, 0.50);
     -webkit-box-shadow: none !important;
     -moz-box-shadow: none !important;
     box-shadow: none !important;
+    border:1px dashed #fff;
 }
 .reveal pre code {
     background: transparent;
     -webkit-box-shadow: none !important;
 	-moz-box-shadow: none !important;
 	box-shadow: none !important;
+}
+
+span.courier {
+    font-family: Courier, monospace;
 }
