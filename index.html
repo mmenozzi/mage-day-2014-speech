@@ -146,14 +146,16 @@
 
                 <section>
                     <h2>&hellip; and how</h2>
-                    <br/><br/>
+                    <br/>
+                    <p><span class="courier">composer install</span></p>
+                    <br/>
                     <ol>
-                        <li class="fragment">Available <span class="orange">packages indexing</span></li>
-                        <li class="fragment"><span class="orange">Dependency tree and packages list</span> calculation</li>
-                        <li class="fragment">Packages list <span class="orange">locking</span> (<span class="courier">composer.lock</span> file)</li>
-                        <li class="fragment">Packages <span class="orange">download</span> (in <span class="courier">vendor</span> folder)</li>
-                        <li class="fragment">Custom <span class="orange">installers</span></li>
-                        <li class="fragment"><span class="orange">Autoload</span> dump</li>
+                        <li>Available <span class="orange">packages indexing</span></li>
+                        <li><span class="orange">Dependency tree and packages list</span> calculation</li>
+                        <li>Packages list <span class="orange">locking</span> (<span class="courier">composer.lock</span> file)</li>
+                        <li>Packages <span class="orange">download</span> (in <span class="courier">vendor</span> folder)</li>
+                        <li>Custom <span class="orange">installers</span></li>
+                        <li><span class="orange">Autoload</span> dump</li>
                     </ol>
                     <aside class="notes">
                         Quando lanciamo l'installazione delle dipendenze, Composer scansiona il repository packagist.org
@@ -177,10 +179,10 @@
                     <h2>Benefits</h2>
                     <br/><br/>
                     <ul>
-                        <li class="fragment">Time save</li>
-                        <li class="fragment">Code reuse</li>
-                        <li class="fragment">Code sharing</li>
-                        <li class="fragment">Easy upgrades</li>
+                        <li><span class="orange">Time</span> save</li>
+                        <li>Code <span class="orange">reuse</span></li>
+                        <li>Code <span class="orange">sharing</span></li>
+                        <li>Easy <span class="orange">upgrades</span></li>
                     </ul>
 
                     <aside class="notes">
@@ -207,6 +209,68 @@
                         nuova versione che ci farebbe dannatamente comodo possiamo con un singolo comando (composer
                         update) aggiornare la libreria anche nel nostro progetto.
                     </aside>
+                </section>
+
+                <section>
+                    <h2>Composer & Magento</h2>
+                    <br/>
+                    <p>The <span class="orange">problem</span>&hellip;</p>
+                    <br/>
+                    <div class="columns">
+                        <div class="col">
+                            <div class="col-inner">
+                                <h3>Composer</h3>
+                                <br/>
+                                <pre><code data-trim>
+./
+├── htdocs/
+└── vendor/
+    ├── vendor-name-1/
+    │   ├── package-1/
+    │   ├── package-2/
+    │   └── package-n/
+    ├── vendor-name-2/
+    └── vendor-name-n/
+                                </code></pre>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="col-inner">
+                                <h3>Magento</h3>
+                                <br />
+                                <pre><code data-trim>
+./
+├── app/
+│   ├── code/
+│   │   ├── community/
+│   │   └── local/
+│   ├── design/
+│   └── etc/
+│       └── modules/
+└── skin/
+                                </code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Composer & Magento</h2>
+                    <br/>
+                    <p>The <span class="orange">solution</span></p>
+                    <br/>
+                    <ol>
+                        <li>Available packages indexing</li>
+                        <li>Dependency tree and packages list calculation</li>
+                        <li>Packages list locking (<span class="courier">composer.lock</span> file)</li>
+                        <li>Packages download (in <span class="courier">vendor</span> folder)</li>
+                        <li><span class="orange"><strong>Custom installers</strong></span></li>
+                        <li>Autoload dump</li>
+                    </ol>
+                </section>
+
+                <section>
+                    <h2>Magento Composer Installer</h2>
                 </section>
 
 				<section>

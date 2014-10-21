@@ -40,3 +40,15 @@ html body {
 span.courier {
     font-family: Courier, monospace;
 }
+
+.columns {
+    overflow: hidden;
+    width: 100%;
+}
+.columns .col {
+    width: 50%;
+    float: left;
+}
+.columns .col .col-inner {
+    padding: 0 10px;
+}
