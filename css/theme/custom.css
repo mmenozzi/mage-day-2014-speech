@@ -52,3 +52,7 @@ span.courier {
 .columns .col .col-inner {
     padding: 0 10px;
 }
+
+pre.big {
+    font-size:.70em;
+}

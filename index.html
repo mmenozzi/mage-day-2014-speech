@@ -65,7 +65,7 @@
 				<section>
 					<h2>Agenda</h2>
 					<ul>
-						<li>What Composer is</li>
+						<li>About Composer</li>
 						<li>What Composer does and how</li>
 						<li>Benefits</li>
 						<li>Composer &amp; Magento</li>
@@ -75,7 +75,7 @@
 				</section>
 
 				<section>
-					<h2>What Composer is</h2>
+					<h2>About Composer</h2>
 					<br/>
 					<img src="img/logo-composer-transparent.png" alt="Composer Logo" />
 					<p class="blockquote">
@@ -271,6 +271,64 @@
 
                 <section>
                     <h2>Magento Composer Installer</h2>
+                    <p>by <span class="orange">Magento Hackathon</span></p>
+                    <br/>
+                    <br/>
+                    <p>
+                        <a href="https://github.com/magento-hackathon/magento-composer-installer">github.com/magento-hackathon/magento-composer-installer</a>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Magento Composer Installer</h2>
+                    <p>Install <span class="orange">a module</span> in your project</p>
+                    <br/>
+                    <p><span class="courier">./composer.json</span></p>
+                    <pre class="big"><code data-trim>
+{
+    "require": {
+        "foo/bar-module": "*",
+        "magento-hackathon/magento-composer-installer": "*"
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "http://packages.firegento.com"
+        }
+    ],
+    "extra":{
+        "magento-root-dir": "htdocs/"
+    }
+}
+                    </code></pre>
+                    <p><span class="courier">$ composer install</span></p>
+                </section>
+
+                <section>
+                    <h2>Magento Composer Installer</h2>
+                    <p>Files <span class="orange">mapping</span></p>
+                    <br/><br/>
+                    <p>There are several ways how the mapping from files in the package into the Magento source is accomplished:</p>
+                    <br/>
+                    <ol>
+                        <li>A mapping in the <span class="courier orange">composer.json</span></li>
+                        <li>The MagentoConnect <span class="courier orange">package.xml</span> file</li>
+                        <li>The <span class="courier orange">modman</span> file</li>
+                    </ol>
+                </section>
+
+                <section>
+                    <h2>Magento Composer Installer</h2>
+                    <p>Install a <span class="orange">MagentoConnect module</span></p>
+                    <br/><br/>
+                    <p><a href="http://packages.firegento.com/">http://packages.firegento.com/</a></p>
+                    <pre class="big"><code data-trim>
+{
+    "require": {
+        "connect20/locale_mage_community_it_it": "*"
+    },
+}
+                    </code></pre>
                 </section>
 
 				<section>
