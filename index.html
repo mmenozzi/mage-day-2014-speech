@@ -337,6 +337,56 @@
                     </code></pre>
                 </section>
 
+                <section>
+                    <h2>Magento Composer Installer</h2>
+                    <p>Make a module <span class="orange">installable with Composer</span></p>
+                    <br/>
+                    <span class="courier big">./composer.json</span>
+                    <br/>
+                    <span class="big">(important: <span class="orange courier">"type": "magento-module"</span>)</span>
+                    <pre class="big"><code data-trim>
+{
+    "name": "acme-company/module-name",
+    "type": "magento-module",
+    "license":"OSL-3.0",
+    "description":"A short one line description of your module",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "your/github/or/git/or/svn/etc/repository/uri"
+        }
+    ],
+}
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>Magento Composer Installer</h2>
+                    <p>Make a module <span class="orange">installable with Composer</span></p>
+                    <br/>
+                    <p>Files mapping (<span class="orange">modman</span> example)</p>
+                    <span class="courier big">./modman</span>
+                    <pre class="big"><code data-trim>
+src                            app/code/local/AcmeCompany/ModuleName
+etc/AcmeCompany_ModuleName.xml app/etc/modules/
+locale/it_IT/*                 app/locale/it_IT/
+                    </code></pre>
+                    <br/>
+                    <p>See <a href="https://github.com/colinmollenhour/modman">github.com/colinmollenhour/modman</a> for further info.</p>
+                </section>
+
+                <section>
+                    <h2>Magento Composer Installer</h2>
+                    <p>Useful <span class="orange">extras</span>&hellip;</p>
+                    <br/>
+                    <ul>
+                        <li>Deploy strategy: copy, symlink or none (<span class="courier">magento-deploystrategy</span>)</li>
+                        <li>Auto append to gitignore (<span class="courier">auto-append-gitignore</span>)</li>
+                    </ul>
+                </section>
+
+
+
 				<section>
 					<h2>Any <span class="orange">Q</span>uestion?</h2>
 					<hr/>
