@@ -63,18 +63,6 @@
 				</section>
 
 				<section>
-					<h2>Agenda</h2>
-					<ul>
-						<li>About Composer</li>
-						<li>What Composer does and how</li>
-						<li>Benefits</li>
-						<li>Composer &amp; Magento</li>
-						<li>Magento Composer Installer</li>
-						<li>Magento PSR0 (and Composer) Autoloader</li>
-					</ul>
-				</section>
-
-				<section>
 					<h2>About Composer</h2>
 					<br/>
 					<img src="img/logo-composer-transparent.png" alt="Composer Logo" />
@@ -86,12 +74,10 @@
 					</p>
 
 					<aside class="notes">
-                        Composer è un tool open source, sviluppato in php, per la gestione delle dipendenze in progetti
-                        php. Le sue potenzialità lo hanno fatto diventare rapidamente lo standard de facto in questo
-                        ambito. Si pensi semplicemente al fatto che alcune librerie storiche, come phpunit, stanno
-                        abbandonando pear per passare a composer come sistema di distribuzione. Considerando che pear è
-                        stato per tanti anni il sistema ufficiale in php per distribuire librerie si capisce quanto
-                        questo strumento sia rivoluzionario.
+                        Composer è uno strumento a linea di comando per la gestione delle dipendenze in progetti PHP. È
+                        open-source, sviluppato in PHP ed è diventato, ormai da tempo, lo standard de-facto in questo
+                        ambito e, tra l’altro, è stato costruito prendendo spunto da strumenti simili sviluppati per
+                        altre tecnologie come Ruby, Java o Python.
 					</aside>
 				</section>
 
@@ -132,12 +118,14 @@
                         </span>
                     </p>
                     <aside class="notes">
-                        Composer permette di definire in un file json (composer.json) l'elenco dei pacchetti da cui il
-                        nostro progetto dipende; per ogni pacchetto può essere specificato un vincolo di
-                        versione o di stabilità. Lanciando poi un singolo comando, Composer utilizza questi metadati per scaricare ed
-                        installare per noi queste dipendenze all'interno del nostro progetto. L'aspetto interessante è
-                        proprio in queste ultime parole "nel nostro progetto", infatti su un secondo progetto avremo un
-                        altro Composer.json con diverse dipendenze che saranno utilizzate per quel progetto.
+                        Composer permette di definire in un file json (il composer.json) l'elenco dei pacchetti
+                        (librerie, moduli, eccetera…) da cui il nostro progetto dipende; per ogni pacchetto può essere
+                        specificato un vincolo di versione o di stabilità del pacchetto stesso. Lanciando poi un singolo
+                        comando, Composer utilizza questi metadati per scaricare ed installare per noi queste dipendenze
+                        all'interno del nostro progetto. L'aspetto interessante è proprio in queste ultime parole "nel
+                        nostro progetto", infatti Composer, sebbene abbia la modalità di funzionamento globale, agisce
+                        per progetto. Quindi su un secondo progetto avremo un altro composer.json file con diverse
+                        dipendenze che saranno specifiche per quel progetto.
                         Altra cosa importante da tenere presente è che Composer, ci permette di installare non solo
                         librerie pubbliche ma anche dipendenze non open-source che si trovano ad esempio su repository
                         privati.
@@ -158,20 +146,17 @@
                         <li><span class="orange">Autoload</span> dump</li>
                     </ol>
                     <aside class="notes">
-                        Quando lanciamo l'installazione delle dipendenze, Composer scansiona il repository packagist.org
-                        (più eventuali repository aggiuntivi definiti nell'apposita sezione del Composer.json) e
-                        indicizza i pacchetti disponibili, le loro versioni e le loro dipendenze. Dopodiché risolve
+                        Quando lanciamo l'installazione delle dipendenze, Composer indicizza, da uno speciale repository
+                        chiamato Packagist, più eventuali repository aggiuntivi definiti nell'apposita sezione del
+                        composer.json, i pacchetti disponibili, le loro versioni e le loro dipendenze. Dopodiché risolve
                         l'albero delle dipendenze in maniera automatica definendo così un elenco di pacchetti da
-                        installare ognuno ad una specifica versione. Questo elenco viene "lockato" nel file
+                        installare ognuno ad una specifica versione. Poi, questo elenco viene "lockato" nel file
                         composer.lock per fare in modo che in futuro, per quel progetto, vengano sempre installate
-                        quelle dipendenze a quelle esatte versioni. I pacchetti vengono poi scaricati utilizzando le
-                        i metadati definiti nei composer.json di ogni pacchetto e i relativi file vengono salvati
-                        in una cartella all'interno del nostro progetto (che solitamente si chiama "vendor"). Come
-                        penultimo passo, vengono eseguiti eventuali custom installers che permettono di eseguire
-                        operazioni custom di installazione. Vedremo tra poco che è proprio un particolare custom
-                        installer che ci consente di usare Composer su Magento. Infine, Composer, genera per noi, in
-                        automatico, un unico autoloader che, se utilizzato, ci fa l'autoload di tutte le classi presenti
-                        nei pacchetti appena scaricati. Tutto questo in poche decine di secondi!
+                        quelle dipendenze a quelle esatte versioni. I pacchetti vengono poi scaricati e i relativi file
+                        vengono salvati in una speciale cartella chiamata "vendor". Vengono poi cercati ed eseguiti
+                        eventuali custom installer che possono svolgere operazioni aggiuntive. Infine, Composer, genera
+                        per noi, in automatico, un unico autoloader che, se utilizzato, ci fa l'autoload di tutte le
+                        classi presenti nei pacchetti appena scaricati. Tutto questo in pochi secondi!
                     </aside>
                 </section>
 
@@ -187,28 +172,34 @@
                     </ul>
 
                     <aside class="notes">
-                        I vantaggi di un tool di questo tipo sono molteplici:
+                        I vantaggi portati dall’utilizzo di uno strumento di questo tipo sono svariati e vorrei citarne
+                        alcuni:<br/>
+                        <br/>
                         Risparmio di tempo: innanzi tutto se dovessimo fare il lavoro appena descritto manualmente tutte
-                        le volte che ne abbiamo bisogno capiamo bene che il tempo che impiegheremmo sarebbe molto più
-                        alto.
+                        le volte che ne abbiamo bisogno capiamo bene che il tempo che impiegheremmo sarebbe molto
+                        maggiore<br/>
                         <br/>
                         Ri-usabilità del codice: immagino che vi sarà capitato di dover utilizzare in un progetto
                         Magento un modulo che avete già sviluppato e utilizzato per un altro progetto. In questo caso
-                        quello che possiamo fare è mettere su un repository separato il suddetto modulo e poi utilizzare
-                        Composer per installarlo in tutti i progetti che ne hanno bisogno. Oppure se nel nostro progetto
-                        ci serve un sistema di logging affidabile è inutile che ci scriviamo da zero l’ennesimo motore
-                        di logging! Ce ne sono già diversi e fatti molto bene quindi usiamoli. Con Composer è molto
-                        facile perché basta scegliere la libreria di logging che vogliamo utilizzare e aggiungerla alle
-                        dipendenze del nostro progetto.
+                        quello che possiamo fare, e quello che ci suggeriscono di fare decenni di storia di sviluppo
+                        software, è di isolare il suddetto modulo (banalmente, ad esempio, su un repository dedicato) e
+                        poi utilizzare Composer per installarlo facilmente in tutti i progetti che ne hanno bisogno.
+                        Oppure se nel nostro progetto ci serve un sistema di logging affidabile è inutile che ci
+                        scriviamo da zero l’ennesimo motore di logging! Ce ne sono già diversi e fatti molto bene quindi
+                        usiamoli. Con Composer è molto facile perché basta scegliere la libreria di logging che vogliamo
+                        utilizzare e aggiungerla alle dipendenze del nostro progetto.<br/>
                         <br/>
-                        Condivisione del codice: se invece, per un particolare progetto, scrivessimo una libreria
-                        particolarmente utile e ri-usabile o il modulo citato prima, rendendolo installabile con
-                        Composer possiamo facilmente fare in modo che altri la utilizzino. Chissà magari poi la
-                        community ce lo può pure migliorare.
+                        Condivisione del codice: se sviluppiamo una libreria o un modulo particolarmente utile e
+                        ri-usabile, rendendolo installabile con Composer possiamo facilmente fare in modo che altri lo
+                        utilizzino e lo migliorino ottenendo così tutti i vantaggio del software open-source.<br/>
                         <br/>
                         Aggiornamenti facili: se una delle librerie da cui il nostro progetto dipende ha rilasciato una
-                        nuova versione che ci farebbe dannatamente comodo possiamo con un singolo comando (composer
-                        update) aggiornare la libreria anche nel nostro progetto.
+                        nuova versione che ci farebbe dannatamente comodo nel nostro progetto possiamo con un singolo
+                        comando (composer update) aggiornare la libreria.<br/>
+                        <br/>
+                        Il team utilizza lo stesso codice: seguendo la buona pratica di mettere sotto controllo di
+                        versione i file composer.json e composer.lock ci assicuriamo che tutto il team di sviluppo abbia
+                        esattamente le stesse dipendenze alla stesse versioni e quindi un ambiente allineato.
                     </aside>
                 </section>
 
@@ -253,6 +244,17 @@
                             </div>
                         </div>
                     </div>
+
+                    <aside class="notes">
+                        Ok. Diciamo che siamo convinti e che vogliamo utilizzare Composer per installare moduli e
+                        librerie sui nostri progetti Magento. Così a prima vista sembra esserci un problema... Come
+                        detto prima Composer mette ogni dipendenza in una singola cartella dedicata, all'interno della
+                        cartella speciale “vendor"; mentre noi sappiamo che i moduli Magento hanno una struttura più
+                        complessa su file system. Ad esempio il file di config del modulo va in app/etc/modules, il
+                        codice va in app/code/local o app/code/community, i template in app/design, gli asset come css e
+                        immagini vanno in skin, eccetera. Come possiamo risolvere questo problema e utilizzare Composer
+                        per gestire le dipendenze (quindi i moduli) sui nostri progetti Magento?
+                    </aside>
                 </section>
 
                 <section>
@@ -268,6 +270,15 @@
                         <li><span class="orange"><strong>Custom installers</strong></span></li>
                         <li>Autoload dump</li>
                     </ol>
+
+                    <aside class="notes">
+                        Se Riguardiamo un momento cosa fa Composer quando installa le dipendenze potremo notare che
+                        subito dopo il download dei file vengono eseguiti i Custom Installer. Come abbiamo detto prima i
+                        Custom Installer servono per eseguire operazioni aggiuntive dopo il download delle dipendenze e
+                        sembrano proprio fare al caso nostro. Infatti, è proprio grazie ad un particolare custom
+                        installer sviluppato dalla community che possiamo facilmente risolvere il problema e usare
+                        Composer sui nostri progetti Magento.
+                    </aside>
                 </section>
 
                 <section>
@@ -278,6 +289,14 @@
                     <p>
                         <a href="https://github.com/magento-hackathon/magento-composer-installer">github.com/magento-hackathon/magento-composer-installer</a>
                     </p>
+
+                    <aside class="notes">
+                        Il particolare Custom Installer di cui stiamo parlando si chiama “Magento Composer Installer” ed
+                        è un progetto nato dalla community durante uno dei Magento Worldwide Hackathon. Il progetto è
+                        stato poi ampliato e sviluppato e oggi viene ampiamente utilizzato. Questo installer consente
+                        l’installazione di moduli Magento attraverso Composer andando a creare dei link simbolici o
+                        delle copie dei file all’interno dell’alberatura di cartelle di Magento.
+                    </aside>
                 </section>
 
                 <section>
@@ -303,6 +322,19 @@
 }
                     </code></pre>
                     <p><span class="courier">$ composer install</span></p>
+
+                    <aside class="notes">
+                        Dunque se vogliamo installare un modulo, con Composer, all’interno del nostro progetto Magento
+                        basterà creare (se non esiste già) un file composer.json come quello mostrato. Sostanzialmente
+                        dobbiamo indicare tra le dipendenze Magento Composer Installer
+                        (magento-hackathon/magento-composer-installer) e il modulo che vogliamo installare
+                        (foo/bar-module). Poi dobbiamo indicare tra i repository quello ufficiale di Magento Composer
+                        Installer (che è packages.firegento.com) e tra i parametri extra la directory in cui si trova la
+                        root di Magento (magento-root-dir). Dando poi il comando composer install, Composer eseguirà il
+                        processo di installazione che abbiamo visto prima e, quando arriverà ad eseguire i custom
+                        installer, eseguirà il Magento Composer Installer che, a sua volta, andrà a creare i link
+                        simbolici dei file e delle cartelle del modulo Foo Bar all’interno delle cartelle di Magento.
+                    </aside>
                 </section>
 
                 <section>
@@ -316,6 +348,17 @@
                         <li>The MagentoConnect <span class="courier orange">package.xml</span> file</li>
                         <li>The <span class="courier orange">modman</span> file (see <a href="https://github.com/colinmollenhour/modman">github.com/colinmollenhour/modman</a>)</li>
                     </ol>
+
+                    <aside class="notes">
+                        Le informazioni di mapping su dove i file del modulo devono essere “symlinkati” all’interno di
+                        Magento vengono lette dal pacchetto stesso (in questo caso Foo Bar). Ci sono diversi modi in cui
+                        i moduli installabili con Composer possono definire questo mapping.
+                        Il primo è inserirle nei parametri extra di Composer all’interno del composer.json. Il secondo è
+                        quello di usare il file package.xml dei pacchetti di MagentoConnect. Il terzo è quello di
+                        utilizzare il file di mapping di un tool chiamato modman. Se Magento Composer Installer trova i
+                        dati di uno qualsiasi di questi metodi di mapping li utilizza per creare i relativi symlink
+                        all’interno di Magento.
+                    </aside>
                 </section>
 
                 <section>
@@ -336,6 +379,15 @@
     ]
 }
                     </code></pre>
+
+                    <aside class="notes">
+                        Magento Composer Installer risulta molto utile anche per installare i moduli di MagentoConnect.
+                        Infatti su packages.firegento.com sono presenti, tra gli altri, tutti i moduli gratuiti che
+                        troviamo su MagentoConnect. Basta cercarli per avere la chiave che va inserita nel
+                        composer.json. Dopodiché basterà lanciare il composer install e avremo il modulo installato. Ad
+                        esempio per installare la localizzazione italiana basterà aggiungere la relativa chiave nei
+                        require e Composer installerà il modulo per noi.
+                    </aside>
                 </section>
 
                 <section>
@@ -359,6 +411,15 @@
     ],
 }
                     </code></pre>
+
+                    <aside class="notes">
+                        Se sviluppate moduli su repository separati vi interesserà sicuramente sapere come renderli
+                        installabili con Composer per utilizzarli facilmente come dipendenze nei vari progetti. È molto
+                        semplice, basta aggiungere un file composer.json, analogo a quello mostrato, nella root del
+                        repository. La parte importante è la chiave “type” che va valorizzata con “magento-module”
+                        perché Magento Composer Installer si aggancia solo ai pacchetti di tipo “magento-module”
+                        appunto.
+                    </aside>
                 </section>
 
                 <section>
@@ -374,6 +435,15 @@ locale/it_IT/*                 app/locale/it_IT/
                     </code></pre>
                     <br/>
                     <p>See <a href="https://github.com/colinmollenhour/modman">github.com/colinmollenhour/modman</a> for further info.</p>
+
+                    <aside class="notes">
+                        Basterà poi aggiungere al nostro modulo le informazioni di mapping dei file. Ad esempio possiamo
+                        farlo con il file “modman” che va messo anch'esso nella root del progetto. Come detto prima sono
+                        disponibili anche altri 2 metodi di mapping. Sostanzialmente, nel file “modman”, bisogna
+                        inserire a sinistra il percorso dei file/cartelle del repository del modulo e a destra la
+                        relativa destinazione nell’alberatura di Magento. Questo sarà il mapping che Magento Composer
+                        Installer utilizzerà nel creare i symlink.
+                    </aside>
                 </section>
 
                 <section>
@@ -386,8 +456,6 @@ locale/it_IT/*                 app/locale/it_IT/
                         <li>Mapping overwrite (<span class="courier">magento-map-overwrite</span>)</li>
                     </ul>
                 </section>
-
-
 
 				<section>
 					<h2>Any <span class="orange">Q</span>uestion?</h2>
