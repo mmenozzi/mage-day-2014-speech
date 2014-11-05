@@ -392,6 +392,46 @@
 
                 <section>
                     <h2>Magento Composer Installer</h2>
+                    <p>Install the <span class="orange">Magento-Core</span> and initialize your project</p>
+                    <br/>
+                    <span class="big">Package <span class="orange courier">magento/core</span> on <a href="http://packages.firegento.com/#!/magento/core">packages.firegento.com</a></span>
+                    <br/>
+                    <span class="courier big">./composer.json</span>
+                    <pre class="big"><code data-trim>
+{
+    "require": {
+        "magento/core": "1.9.0.1"
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "http://packages.firegento.com"
+        }
+    ],
+    "extra":{
+        "magento-root-dir": "htdocs/"
+    }
+}
+                    </code></pre>
+                    <p>Only 1.9.0.1 avaliable... :(</p>
+
+                    <aside class="notes">
+                        Se vogliamo creare il nostro progetto da zero ed installare con Composer il core di
+                        Magento stesso trattandolo come dipendenza esterna, con Magento Composer Installer possiamo
+                        farlo.
+                        Infatti, creando un composer.json file come quello mostrato in cui mettiamo tra le dipendenze il
+                        pacchetto "magento/core" otterremo proprio questo risultato.
+                        Anche in questo caso è importante inserire tra i repository packages.firegento.com perché il
+                        pacchetto "magento/core" si trova li.
+                        Dando poi il solito comando "composer install" il core di Magento alla versione 1.9.0.1 verrà
+                        installato nella cartella specificata dall'opzione magento-root-dir.
+                        Unico aspetto negativo è che il pacchetto magento/core, al momento, prevede solo la versione
+                        1.9.0.1 di Magento e non le precedenti.
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Magento Composer Installer</h2>
                     <p>Make a module <span class="orange">installable with Composer</span></p>
                     <br/>
                     <span class="courier big">./composer.json</span>
